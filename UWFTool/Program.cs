@@ -8,15 +8,15 @@ namespace UWFTool
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main() {
-            new UWFController();
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new NotificationForm());
+            UWFController uwfController = new UWFController();
+
+            if (!uwfController.UWFCurrentEnabled()) {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new NotificationForm(uwfController));
+            }
         }
     }
 }

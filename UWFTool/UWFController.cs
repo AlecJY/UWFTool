@@ -9,7 +9,7 @@ using Microsoft.Management.Infrastructure;
 using Microsoft.Management.Infrastructure.Options;
 
 namespace UWFTool {
-    class UWFController {
+    public class UWFController {
         private static readonly ILog Logger = LogManager.GetLogger(AppInfo.AppName);
         private CimInstance _cimInstance;
         private CimSession _cimSession;
