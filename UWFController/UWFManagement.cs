@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using log4net;
 using Microsoft.Management.Infrastructure;
@@ -14,6 +10,7 @@ namespace UWFTool.UWFController {
         private static readonly ILog Logger = LogManager.GetLogger(AppInfo.AppName);
         private CimInstance _cimInstance;
         private CimSession _cimSession;
+        private bool _noPermission;
 
         public UWFManagement()
         {
@@ -50,6 +47,11 @@ namespace UWFTool.UWFController {
             {
                 if (e.HResult == -2146233088)
                 {
+                    try {
+                        _cimSession.GetClass(@"root\standardcimv2\embedded", "UWF_Filter");
+                        _noPermission = true;
+                        return;
+                    } catch (Exception) { }
                     Console.Error.WriteLine(e);
                     Logger.Error(e);
                     MessageBox.Show("Cannot find Unified Write Filter.\nPlease install Unified Write Filter then run this program again.", AppInfo.AppName, MessageBoxButtons.OK,
@@ -62,6 +64,10 @@ namespace UWFTool.UWFController {
                     Logger.Fatal(e);
                 }
             }
+        }
+
+        public bool NoPermission() {
+            return _noPermission;
         }
 
         public bool UWFCurrentEnabled()

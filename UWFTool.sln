@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UWFTool", "UWFTool\UWFTool.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UWFController", "UWFController\UWFController.csproj", "{ECED7A4E-386C-4C05-9200-23C886B99945}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer", "Installer\Installer.csproj", "{587574EE-29CF-4E49-A0C7-27F521460CD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{ECED7A4E-386C-4C05-9200-23C886B99945}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECED7A4E-386C-4C05-9200-23C886B99945}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECED7A4E-386C-4C05-9200-23C886B99945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{587574EE-29CF-4E49-A0C7-27F521460CD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{587574EE-29CF-4E49-A0C7-27F521460CD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{587574EE-29CF-4E49-A0C7-27F521460CD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{587574EE-29CF-4E49-A0C7-27F521460CD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
