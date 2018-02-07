@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UWFTool.UWFController;
 
 namespace UWFTool
 {
@@ -10,12 +11,12 @@ namespace UWFTool
     {
         [STAThread]
         static void Main() {
-            UWFController uwfController = new UWFController();
+            UWFManagement uwfManagement = new UWFManagement();
 
-            if (!uwfController.UWFCurrentEnabled()) {
+            if (!uwfManagement.UWFCurrentEnabled()) {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new NotificationForm(uwfController));
+                Application.Run(new NotificationForm(uwfManagement));
             }
         }
     }

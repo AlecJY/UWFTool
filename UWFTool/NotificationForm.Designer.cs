@@ -44,9 +44,9 @@
             // enableButton
             // 
             this.enableButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.enableButton.Location = new System.Drawing.Point(59, 90);
+            this.enableButton.Location = new System.Drawing.Point(44, 74);
             this.enableButton.Name = "enableButton";
-            this.enableButton.Size = new System.Drawing.Size(177, 23);
+            this.enableButton.Size = new System.Drawing.Size(204, 30);
             this.enableButton.TabIndex = 1;
             this.enableButton.Text = "Enable UWF and Restart";
             this.enableButton.UseVisualStyleBackColor = true;
@@ -65,6 +65,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "NotificationForm";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.NotificationForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
