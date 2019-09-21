@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Security.Principal;
+using System.Diagnostics;
 using Microsoft.Win32;
 
 namespace UWFTool.Installer {
@@ -43,6 +44,23 @@ namespace UWFTool.Installer {
                         }
                         break;
                 }
+            }
+            if(args.Length == 1)
+            {
+                string cmd = "";
+                switch (args[0])
+                {
+                    case "/installUWF":
+                        cmd = "DISM /Online /enable-Feature /FeatureName:client-UnifiedWriteFilter /all /Quiet";
+                        break;
+                    case "/uninstallUWF":
+                        cmd = "DISM /Online /disable-Feature /FeatureName:client-UnifiedWriteFilter /Quiet";
+                        break;
+                }
+                ProcessStartInfo pStartInfo = new ProcessStartInfo("cmd.exe", "/c " + cmd);
+                Process p = new Process();
+                p.StartInfo = pStartInfo;
+                p.Start();
             }
         }
     }
