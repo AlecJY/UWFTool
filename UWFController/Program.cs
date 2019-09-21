@@ -13,18 +13,17 @@ namespace UWFTool.UWFController {
     public class Program {
         public static void Main(String[] args) {
             XmlConfigurator.Configure(new FileInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) +
-                                                   Path.DirectorySeparatorChar + "log.config"));
+                                                   Path.DirectorySeparatorChar + "log.config"));       
             if (args.Length == 1) {
                 UWFManagement uwfManager = new UWFManagement();
-                PowerManagement powerManagement = new PowerManagement();
                 switch (args[0]) {
                     case "enable":
                         uwfManager.UWFEnable();
-                        powerManagement.Reboot();
+                        uwfManager.UWFRestartSystem();
                         break;
                     case "disable":
                         uwfManager.UWFDisable();
-                        powerManagement.Reboot();
+                        uwfManager.UWFRestartSystem();
                         break;
                 }
             }
