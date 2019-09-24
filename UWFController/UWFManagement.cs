@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using log4net;
+using System.Management;
 using Microsoft.Management.Infrastructure;
 using Microsoft.Management.Infrastructure.Options;
+using System.Management.Automation;
 
 namespace UWFTool.UWFController {
     public class UWFManagement
@@ -12,6 +14,7 @@ namespace UWFTool.UWFController {
         private CimSession _cimSession;
         private bool _noPermission;
 
+
         public UWFManagement()
         {
             try
@@ -20,6 +23,7 @@ namespace UWFTool.UWFController {
                 {
                     _cimSession.Close();
                 }
+
                 var sessionOptions = new DComSessionOptions();
                 sessionOptions.Timeout = new TimeSpan(0, 2, 0);
                 _cimSession = CimSession.Create(@".", sessionOptions);
@@ -84,31 +88,40 @@ namespace UWFTool.UWFController {
 
         public void UWFEnable()
         {
-            CimMethodParametersCollection parametersCollection = new CimMethodParametersCollection();
-            var result = _cimSession.InvokeMethod(_cimInstance, "Enable", parametersCollection);
-            if ((uint)result.ReturnValue.Value != 0)
+            var scope = new ManagementScope(@"root\standardcimv2\embedded");
+            var uwfClass = new ManagementClass(scope.Path.Path, "UWF_Filter", null);
+            var instances = uwfClass.GetInstances();
+
+            foreach (ManagementObject instance in instances)
             {
-                Logger.Error("Enable UWF Failed. Error code: " + result.ReturnValue.Value);
+                var result = instance.InvokeMethod("Enable", null);
+                break;
             }
         }
 
         public void UWFDisable()
         {
-            CimMethodParametersCollection parametersCollection = new CimMethodParametersCollection();
-            var result = _cimSession.InvokeMethod(_cimInstance, "Disable", parametersCollection);
-            if ((uint)result.ReturnValue.Value != 0)
+            var scope = new ManagementScope(@"root\standardcimv2\embedded");
+            var uwfClass = new ManagementClass(scope.Path.Path, "UWF_Filter", null);
+            var instances = uwfClass.GetInstances();
+
+            foreach (ManagementObject instance in instances)
             {
-                Logger.Error("Disable UWF Failed. Error code: " + result.ReturnValue.Value);
+                var result = instance.InvokeMethod("Disable", null);
+                break;
             }
         }
 
         public void UWFRestartSystem()
         {
-            CimMethodParametersCollection parametersCollection = new CimMethodParametersCollection();
-            var result = _cimSession.InvokeMethod(_cimInstance, "RestartSystem", parametersCollection);
-            if ((uint)result.ReturnValue.Value != 0)
+            var scope = new ManagementScope(@"root\standardcimv2\embedded");
+            var uwfClass = new ManagementClass(scope.Path.Path, "UWF_Filter", null);
+            var instances = uwfClass.GetInstances();
+
+            foreach (ManagementObject instance in instances)
             {
-                Logger.Error("Restart System Failed. Error code: " + result.ReturnValue.Value);
+                var result = instance.InvokeMethod("RestartSystem", null);
+                break;
             }
         }
     }
